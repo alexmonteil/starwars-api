@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'SEGA LOGO FONT';
+    font-style: normal;
+    font-weight: normal;
+    src: local('SEGA LOGO FONT'), url('./SEGA.woff') format('woff');
+}
+
+h1 {
+    font-family: 'SEGA LOGO FONT';
+    font-weight: 200;
+    color: #ffb700;
+}
+
+
+/* People, planet and starship icons */
+.icon {
+    height: 5rem;
+    width: 5rem;
+    padding: 0.5rem;
+}
+
+/* People, planets and starships cards style */
+.card {
+    width: 18rem;
+    color:#fff;
+    background: rgba(209, 209, 224, 0.4);
+}
+
+/* SearchBox style */
+
+.searchbox {
+    border-radius: 5rem;
+}
+
+/* Navigation style */
+
+.navigation {
+    border-radius: 5rem;
+    color: #fff;
+    font-weight: 600;
+}
+
+.navigation:hover {
+    color: #ffb700;
+    box-shadow: 0px 0px 20px #ffb700;
+    transition: linear 0.2s
+}
