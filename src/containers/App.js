@@ -8,9 +8,9 @@ import './App.css';
 import Scroll from '../components/Scroll';
 
 const urls = [
-    'https://swapi.co/api/people/',
-    'https://swapi.co/api/planets/',
-    'https://swapi.co/api/starships/'
+    'https://swapi.co/api/people/?page=',
+    'https://swapi.co/api/planets/?page=',
+    'https://swapi.co/api/starships/?page='
 ];
 
 class App extends Component {
@@ -26,24 +26,38 @@ class App extends Component {
     }
 
     async componentDidMount() {
-        try {
-            const [people, planets, starships] = await Promise.all(urls.map(async function(url) {
-                const response = await fetch(url);
-                return response.json();
-            }));
-            this.setState({people: people.results});
-            this.setState({planets: planets.results});
-            this.setState({starships: starships.results});
-        } catch (err) {
-            console.log('Something went wrong', err);
+        async function allData(url) {
+            let bool = true;
+            let i = 1;
+            let finalArray = [];
+            while (bool) {
+                const response = await fetch(url+i.toString());
+                const data = await response.json();
+                if (data.next != null) {
+                    finalArray = finalArray.concat(data.results);
+                    i++;
+                } else {
+                    finalArray = finalArray.concat(data.results);
+                    bool = false;
+                }
+            }
+            return finalArray;
         }
+
+        const [people, planets, starships] = await Promise.all(urls.map(url => allData(url)));
+    
+        return this.setState({
+            people: people,
+            planets: planets,
+            starships: starships
+        });
     }
 
-    onClickChange = (event) => {
+    onClickChange = event => {
         this.setState({view: event.target.value});
     }
 
-    onSearchChange = (event) => {
+    onSearchChange = event => {
         this.setState({searchfield: event.target.value});
     }
 
@@ -136,10 +150,105 @@ export default App;
         console.log(typeof people);
         console.log(typeof planets);
         console.log(typeof starships);
-        console.log(people.results);
-        console.log(planets.results);
-        console.log(starships.results);
+        console.log(people);
+        console.log(planets);
+        console.log(starships);
     } catch (err) {
         console.log('Something went wrong', err);
     }
+}*/
+
+/*
+const getData2 = url => {
+    fetch(url)
+    .then(resp => resp.json())
+    .then(data => {
+        const count = data.count;
+        let finalResult = [];
+        for (let i = 1; i <= count; i++) {
+            fetch(url+i.toString())
+            .then(response => response.json())
+            .then(item => finalResult.push(item));
+        }
+        console.log(finalResult);
+    });
+}
+
+const [people, planets, starships] = await Promise.all(urls.map(getData3(url)));
+console.log(people);
+console.log(planets);
+console.log(starships);
+
+async function getData3(url) {
+    let firstResponse = await fetch(url);
+    let arrayOfData = await firstResponse.json();
+    let count = await arrayOfData.count;
+    let arrayOfItems = [];
+    for (let i = 1; i <= count; i++) {
+        let itemPromise = await fetch(url+i.toString());
+        let item = await itemPromise.json();
+        arrayOfItems.push(item);
+    }
+    return arrayOfItems;
+}
+
+
+async componentDidMount() {
+    try {
+        const [people, planets, starships] = await Promise.all(urls.map(async function(url) {
+            const response = await fetch(url);
+            return response.json();
+        }));
+        this.setState({people: people.results});
+        this.setState({planets: planets.results});
+        this.setState({starships: starships.results});
+    } catch (err) {
+        console.log('Something went wrong', err);
+    }
+}
+
+*/
+
+
+/*async function getAllData(url) {
+    const request = await fetch(url);
+    const response = await request.json();
+    const count = response.count;
+    const arrayOfUrls = [];
+    for (let i = 1; i <= count; i++) {
+        arrayOfUrls.push(url+i.toString());
+    }
+    const arrayOfPromises = arrayOfUrls.map(url => fetch(url));
+    const arrayOfData = [];
+    for await (let request of arrayOfPromises) {
+        const data = await request.json();
+        arrayOfData.push(data);
+    }
+    arrayOfData.forEach(item => console.log(item));
+}*/
+
+/*const getData5 = url => {
+    fetch(url)
+    .then(resp => resp.json())
+    .then(data => console.log(data.next.results));
+}
+
+'https://swapi.co/api/people/?page='
+
+async function allData(url) {
+    let bool = true;
+    let i = 1;
+    let finalArray = [];
+    while (bool) {
+        const response = await fetch(url+i.toString());
+        const data = await response.json();
+        if (data.next != null) {
+            finalArray = finalArray.concat(data.results);
+            i++;
+        } else {
+            finalArray = finalArray.concat(data.results);
+            bool = false;
+        }
+    }
+    return finalArray;
 }*/
