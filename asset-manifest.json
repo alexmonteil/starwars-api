@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/starwars-api/static/css/main.1733b4c4.chunk.css",
+    "main.js": "/starwars-api/static/js/main.d8b38705.chunk.js",
+    "main.js.map": "/starwars-api/static/js/main.d8b38705.chunk.js.map",
+    "runtime~main.js": "/starwars-api/static/js/runtime~main.060f48ba.js",
+    "runtime~main.js.map": "/starwars-api/static/js/runtime~main.060f48ba.js.map",
+    "static/css/2.31dafeb2.chunk.css": "/starwars-api/static/css/2.31dafeb2.chunk.css",
+    "static/js/2.220cd4b6.chunk.js": "/starwars-api/static/js/2.220cd4b6.chunk.js",
+    "static/js/2.220cd4b6.chunk.js.map": "/starwars-api/static/js/2.220cd4b6.chunk.js.map",
+    "index.html": "/starwars-api/index.html",
+    "precache-manifest.c1d6fc7ec231e5ebac4bb0b58005ffff.js": "/starwars-api/precache-manifest.c1d6fc7ec231e5ebac4bb0b58005ffff.js",
+    "service-worker.js": "/starwars-api/service-worker.js",
+    "static/css/2.31dafeb2.chunk.css.map": "/starwars-api/static/css/2.31dafeb2.chunk.css.map",
+    "static/css/main.1733b4c4.chunk.css.map": "/starwars-api/static/css/main.1733b4c4.chunk.css.map",
+    "static/media/App.css": "/starwars-api/static/media/SEGA.12a3db8b.woff",
+    "static/media/darth-vader.png": "/starwars-api/static/media/darth-vader.47232763.png"
+  }
+}
